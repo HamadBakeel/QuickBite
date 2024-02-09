@@ -1,10 +1,31 @@
-import { Text, View, StyleSheet, Image } from 'react-native'
+import { Text, View, StyleSheet, Image, TextInput } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import {  TouchableOpacity } from 'react-native-gesture-handler'
 import { Ionicons } from '@expo/vector-icons'
 import Colors from '../constants/Colors'
+import { Link } from 'expo-router'
 
+const SearchBar = ()=>{
+   return (
+
+       <View style={styles.searchContainer}>
+        <View style={styles.searchSection}>
+            <View style={styles.searchField}>
+                <Ionicons name='ios-search' size={20} color={Colors.meduim} style={styles.searchIcon}/>
+                <TextInput placeholder='Resturants, Gorceries, dishes' style={styles.input}/>
+            </View>
+            <Link href={'/'} asChild>
+                <TouchableOpacity style={styles.optionButton}>
+                    <Ionicons name='options-outline' size={20} color={Colors.primary} style={{paddingTop: 5}}/>
+                </TouchableOpacity>
+            </Link>
+
+        </View>
+
+    </View>
+    )
+}
 
 const CustomHeader = () => {
   return (
@@ -28,6 +49,7 @@ const CustomHeader = () => {
                 <Ionicons name='person-outline' size={20} color={Colors.primary}/>
             </TouchableOpacity>
         </View>
+        <SearchBar />
     </SafeAreaView>
   )
 }
@@ -74,8 +96,35 @@ const styles = StyleSheet.create({
     subtitle: {
         fontSize: 18,
         fontWeight: 'bold'
-    }
-
+    },
+    searchContainer:{
+        height: 60,
+        backgroundColor: '#fff'
+    },
+    searchSection: {
+        flexDirection: 'row',
+        gap: 10,
+        paddingHorizontal: 20,
+        alignItems: 'center'
+    },
+    searchField: {
+        flex: 1,
+        backgroundColor: Colors.lightGray,
+        borderRadius: 8,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    input:{
+        padding: 10,
+        color: Colors.meduimDark
+    },
+    searchIcon: {
+        paddingLeft: 10
+    },
+    optionButton: {
+        padding: 10,
+        backgroundColor: 'transparent'
+    },
 })
 
 export default CustomHeader

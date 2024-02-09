@@ -20,5 +20,6 @@ export default {
   lightGray: '#fcf8ff',
   grey: '#eee950',
   meduim: '#9f9aa1',
+  meduimDark: '#424242',
   green: '#437919',
 };
