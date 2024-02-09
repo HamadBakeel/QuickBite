@@ -1,10 +1,12 @@
 import { Text, View, StyleSheet, Image, TextInput } from 'react-native'
-import React from 'react'
+import React, { useRef } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import {  TouchableOpacity } from 'react-native-gesture-handler'
 import { Ionicons } from '@expo/vector-icons'
 import Colors from '../constants/Colors'
 import { Link } from 'expo-router'
+import BottomSheet from './BottomSheet'
+import { BottomSheetModal } from '@gorhom/bottom-sheet'
 
 const SearchBar = ()=>{
    return (
@@ -20,23 +22,26 @@ const SearchBar = ()=>{
                     <Ionicons name='options-outline' size={20} color={Colors.primary} style={{paddingTop: 5}}/>
                 </TouchableOpacity>
             </Link>
-
         </View>
-
     </View>
     )
 }
 
 const CustomHeader = () => {
+    const bottomSheetRef = useRef<BottomSheetModal>(null)
+    const openModal = ()=>{
+        bottomSheetRef.current?.present()
+    }
   return (
     <SafeAreaView style={styles.safeArea} >
+        <BottomSheet ref={bottomSheetRef}/>
         <View style={styles.container}>
             <View style={styles.leftSide}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={openModal}>
                     <Image source={require('../assets/images/bike.png')} style={styles.bike}/>
                 </TouchableOpacity>
                 
-                <TouchableOpacity style={styles.titleContainer}>
+                <TouchableOpacity style={styles.titleContainer} onPress={openModal}>
                     <Text style={styles.title}>Delivery . now</Text>
                     <View style={styles.location}>
                         <Text style={styles.subtitle}>Riyadh, Hassan</Text>

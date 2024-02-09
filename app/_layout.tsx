@@ -1,3 +1,4 @@
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import CustomHeader from '../components/CustomHeader';
 import { Stack } from 'expo-router';
 
@@ -12,8 +13,10 @@ export const unstable_settings = {
 export default function RootLayoutNav() {
 
   return (
+    <BottomSheetModalProvider>
       <Stack>
         <Stack.Screen name="index" options={{ header: ()=> <CustomHeader/>  }} />
       </Stack>
+    </BottomSheetModalProvider>
   );
 }
